@@ -209,7 +209,7 @@
                 <!-- Options will be loaded here dynamically -->
             </div>
             <div class="button-container">
-                <button type="button" onclick="checkAnswers()">Submit Answer</button>
+                <button type="button" id="submitButton" onclick="checkAnswers()">Submit Answer</button>
             </div>
             <div id="feedback"></div>
         </div>
@@ -279,6 +279,7 @@
             const questionContainer = document.getElementById('questionContainer');
             const feedbackElement = document.getElementById('feedback');
             const buttonContainer = document.querySelector('.button-container');
+            const submitButton = document.getElementById('submitButton');
 
             if (selectedOption) {
                 if (selectedOption.correct) {
@@ -292,6 +293,7 @@
                     setTimeout(() => {
                         correctMessage.style.opacity = '0';
                         setTimeout(() => {
+                            submitButton.style.display = 'none'; // Hide the Submit Answer button
                             const continueButton = document.createElement('button');
                             continueButton.className = 'continue-pill';
                             continueButton.textContent = 'Continue?';
