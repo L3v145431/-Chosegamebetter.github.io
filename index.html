@@ -14,23 +14,20 @@
       margin: 0;
       background-color: #E2E2E2;
       color: #000000;
-     overflow: auto;
+      overflow: auto;
     }
 
-    /* Contenedor padre para aspect ratio 1:1 */
     .game-wrapper {
       width: 90vmin;
       height: 90vmin;
-      max-width: 600px;
-      max-height: 600px;
+      max-width: 100%;
+      max-height: 100%;
     }
 
-    /* Game container ocupa todo el cuadrado */
     .game-container {
       width: 100%;
       height: 100%;
       box-sizing: border-box;
-
       background-color: #FFFFFF;
       padding: 2.5vmin;
       border-radius: 4vmin;
@@ -38,8 +35,7 @@
       text-align: center;
       max-width: 90%;
       position: relative;
-       overflow: auto;
-
+      overflow: auto;
       display: flex;
       flex-direction: column;
     }
@@ -81,8 +77,7 @@
     }
 
     @keyframes flash {
-      0%,
-      100% {
+      0%, 100% {
         background-color: #ddd;
       }
       50% {
@@ -115,7 +110,7 @@
     }
 
     .image-container img {
-      max-width: 70%;
+      max-width: 100%;
       max-height: 25vmin;
       height: auto;
       border-radius: 3vmin;
@@ -130,9 +125,7 @@
       flex-grow: 1;
       overflow-y: auto;
       margin-bottom: 1.5vmin;
-      padding-top: 1vmin; /* O si prefieres: margin-top: -1vmin; */
-
-   
+      padding-top: 1vmin;
     }
 
     .option-button {
@@ -208,14 +201,16 @@
     .correct-feedback {
       color: #2E7D32;
       background-color: rgba(46, 125, 50, 0.1);
-      
     }
 
     .incorrect-feedback {
       color: #C62828;
       background-color: rgba(198, 40, 40, 0.1);
-      font-size: 12px;
+      font-size: 1.8vmin;
       top: 190%;
+      padding: 1vmin;
+      border-radius: 1vmin;
+      line-height: 1.3;
     }
 
     .pill {
@@ -226,15 +221,6 @@
       margin: 1vmin;
       font-size: 3vmin;
     }
-    .incorrect-feedback {
-  font-size: 1.8vmin; /* Cambia a un valor más pequeño si lo deseas */
-  color: #C62828;
-  background-color: rgba(198, 40, 40, 0.1);
-  padding: 1vmin;
-  border-radius: 1vmin;
-  
-  line-height: 1.3;
-}
 
     .correct-pill {
       background-color: rgba(46, 125, 50, 0.1);
@@ -272,15 +258,16 @@
       transition: background-color 0.3s;
       font-size: 2.6vmin;
     }
-#submitButton {
-  font-size: 2.6vmin;       /* Tamaño de letra, por ejemplo */
-  padding: 2vmin 4vmin;   /* Espaciado vertical y horizontal */
-  width: 45%; 
-  height: 50px;
-  border-radius: 5vmin;            /* Ancho (puedes usar px, %, etc.) */
-  max-width: 300px;   
 
-}
+    #submitButton {
+      font-size: 2.6vmin;
+      padding: 2vmin 4vmin;
+      width: 45%;
+      height: auto;
+      border-radius: 5vmin;
+      max-width: 300px;
+    }
+
     .button-container {
       display: flex;
       justify-content: center;
@@ -296,15 +283,14 @@
       }
     }
 
-    /* Scrollbar para opciones si hay muchas */
     .options-container::-webkit-scrollbar {
       width: 0.5vmin;
     }
+
     .options-container::-webkit-scrollbar-thumb {
       background-color: rgba(0, 0, 0, 0.1);
       border-radius: 1vmin;
     }
-   
   </style>
 </head>
 <body>
@@ -341,7 +327,6 @@
       </div>
     </div>
   </div>
-
   <canvas
     id="confetti-canvas"
     style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100vmin; height: 100vmin; pointer-events: none; z-index: 100;"
@@ -375,12 +360,10 @@
         ],
       },
     ];
-
     let currentQuestionIndex = 0;
     let selectedOption = null;
     let confettiInterval;
     let correctAnswersCount = 1;
-
     function updateProgressBar() {
       for (let i = 1; i <= 7; i++) {
         const segment = document.getElementById(`segment${i}`);
@@ -394,7 +377,6 @@
         }
       }
     }
-
     function loadQuestion(index) {
       const question = questions[index];
       const questionContainer = document.getElementById('questionContainer');
@@ -431,7 +413,6 @@
         }, 10);
       }
     }
-
     function checkAnswers() {
       const questionContainer = document.getElementById('questionContainer');
       const feedbackElement = document.getElementById('feedback');
@@ -501,17 +482,14 @@
         feedbackElement.className = 'incorrect-feedback';
       }
     }
-
     function resetSelection() {
       document.getElementById('feedback').textContent = '';
       document.querySelectorAll('.option-button').forEach((btn) => btn.classList.remove('selected'));
       selectedOption = null;
     }
-
     function redirectToWorkPage() {
       window.location.href = 'https://levi5171.wixstudio.com/my-site-1/blank-1';
     }
-
     function startConfetti() {
       const canvas = document.getElementById('confetti-canvas');
       const myConfetti = confetti.create(canvas, { resize: true, useWorker: true });
@@ -532,7 +510,6 @@
         }
       }, 1000);
     }
-
     document.addEventListener('DOMContentLoaded', function () {
       loadQuestion(currentQuestionIndex);
       updateProgressBar();
