@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Multiple Choice Game</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
+      font-family: 'Helvetica', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -18,22 +18,21 @@
     }
 
     .game-wrapper {
-      width: 90vmin;
+      width: 400vmin;
       height: 90vmin;
-      max-width: 100%;
-      max-height: 100%;
+      max-width: 90vmin;
+      max-height: 90vmin;
     }
 
     .game-container {
-      width: 100%;
-      height: 100%;
+      width: 2000px;
+      height: 90%;
       box-sizing: border-box;
       background-color: #FFFFFF;
       padding: 2.5vmin;
       border-radius: 4vmin;
       box-shadow: 0 0 3vmin rgba(0, 0, 0, 0.1);
       text-align: center;
-      max-width: 90%;
       position: relative;
       overflow: auto;
       display: flex;
@@ -93,13 +92,15 @@
 
     .title-container h1 {
       color: #000000;
-      font-size: 4.5vmin;
+      font-size: 3vmin;
       margin-bottom: 1vmin;
+      font-family: 'Helvetica', sans-serif;
     }
 
     .title-container h2 {
       color: #555555;
-      font-size: 3vmin;
+      font-size: 2vmin;
+      font-family: 'Helvetica', sans-serif;
     }
 
     .image-container {
@@ -110,10 +111,10 @@
     }
 
     .image-container img {
-      max-width: 100%;
-      max-height: 25vmin;
+      max-width: 80%;
+      max-height: 20vmin;
       height: auto;
-      border-radius: 3vmin;
+      border-radius: 2vmin;
       object-fit: contain;
     }
 
@@ -131,19 +132,20 @@
     .option-button {
       background-color: #FCD307;
       border: none;
-      border-radius: 10vmin;
-      padding: 1.5vmin;
-      margin: 1vmin 0;
+      border-radius: 7vmin;
+      padding: 1vmin;
+      margin: 0.7vmin 0;
       cursor: pointer;
       transition: background-color 0.3s, transform 0.2s;
-      width: 80%;
+      width: 40%;
       text-align: center;
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      font-size: 2.8vmin;
+      font-size: 2vmin;
       box-sizing: border-box;
       user-select: none;
+      font-family: 'Helvetica', sans-serif;
     }
 
     .option-button:hover {
@@ -156,18 +158,18 @@
     }
 
     .option-circle {
-      width: 1.5vmin;
-      height: 1.5vmin;
+      width: 1vmin;
+      height: 1vmin;
       border-radius: 50%;
       background-color: #FFFFFF;
-      border: 0.7vmin solid #000000;
-      margin-right: 1.5vmin;
+      border: 0.5vmin solid #000000;
+      margin-right: 1vmin;
       flex-shrink: 0;
     }
 
     .option-button.selected .option-circle {
       background-color: #3a3a3a;
-      border: 0.7vmin solid #000000;
+      border: 0.5vmin solid #000000;
     }
 
     button {
@@ -177,11 +179,12 @@
       border-radius: 1.5vmin;
       cursor: pointer;
       font-weight: bold;
-      padding: 1.5vmin 3vmin;
-      margin-top: 1.5vmin;
+      padding: 1vmin 2vmin;
+      margin-top: 1vmin;
       transition: background-color 0.3s;
-      font-size: 3.5vmin;
+      font-size: 2.5vmin;
       user-select: none;
+      font-family: 'Helvetica', sans-serif;
     }
 
     button:hover {
@@ -191,11 +194,12 @@
     #feedback {
       font-weight: bold;
       margin-top: 3vmin;
-      font-size: 2vmin;
-      padding: 1vmin;
-      border-radius: 1.5vmin;
-      min-height: 4em;
+      font-size: 1.5vmin;
+      padding: 0.7vmin;
+      border-radius: 1vmin;
+      min-height: 3em;
       box-sizing: border-box;
+      font-family: 'Helvetica', sans-serif;
     }
 
     .correct-feedback {
@@ -206,39 +210,47 @@
     .incorrect-feedback {
       color: #C62828;
       background-color: rgba(198, 40, 40, 0.1);
-      font-size: 1.8vmin;
+      font-size: 1.6vmin;
       top: 190%;
-      padding: 1vmin;
-      border-radius: 1vmin;
+      padding: 0.7vmin;
+      border-radius: 0.7vmin;
       line-height: 1.3;
+      font-family: 'Helvetica', sans-serif;
     }
 
     .pill {
       display: inline-block;
-      padding: 1.5vmin 3vmin;
-      border-radius: 5vmin;
+      padding: 1vmin 2vmin;
+      border-radius: 3vmin;
       font-weight: bold;
-      margin: 1vmin;
-      font-size: 3vmin;
+      margin: 0.7vmin;
+      font-size: 2vmin;
+      font-family: 'Helvetica', sans-serif;
     }
 
     .correct-pill {
       background-color: rgba(46, 125, 50, 0.1);
       color: #2E7D32;
-      font-size: 15px;
+    }
+
+    .success-message {
+      font-size: 11px;
+      margin-top: -2vmin;
+      transform: translateY(-1vmin);
     }
 
     .try-again-pill {
       background-color: #FFCDD2;
       color: #C62828;
       border: none;
-      border-radius: 5vmin;
+      border-radius: 3vmin;
       cursor: pointer;
       font-weight: bold;
-      padding: 1.5vmin 3vmin;
-      margin-top: 1.5vmin;
+      padding: 1vmin 2vmin;
+      margin-top: 1vmin;
       transition: background-color 0.3s;
-      font-size: 2.6vmin;
+      font-size: 2vmin;
+      font-family: 'Helvetica', sans-serif;
     }
 
     .try-again-pill:hover {
@@ -250,35 +262,37 @@
       background-color: #FFD54F;
       color: #000000;
       border: none;
-      border-radius: 5vmin;
+      border-radius: 3vmin;
       cursor: pointer;
       font-weight: bold;
-      padding: 1.5vmin 3vmin;
-      margin-top: 1.5vmin;
+      padding: 1vmin 2vmin;
+      margin-top: 1vmin;
       transition: background-color 0.3s;
-      font-size: 2.6vmin;
+      font-size: 2vmin;
+      font-family: 'Helvetica', sans-serif;
     }
 
     #submitButton {
-      font-size: 2.6vmin;
-      padding: 2vmin 4vmin;
-      width: 45%;
+      font-size: 2vmin;
+      padding: 1.5vmin 3vmin;
+      width: 24%;
       height: auto;
-      border-radius: 5vmin;
-      max-width: 300px;
+      border-radius: 3vmin;
+      max-width: 250px;
     }
 
     .button-container {
       display: flex;
       justify-content: center;
-      gap: 1.5vmin;
-      margin-top: -2vmin;
+      gap: 1vmin;
+      margin-top: -1.5vmin;
       flex-shrink: 0;
     }
 
     @media (min-width: 768px) {
       .game-container {
         max-width: 600px;
+        max-height: 600px;
         padding: 3vmin;
       }
     }
@@ -307,15 +321,11 @@
       </div>
       <div id="questionContainer" class="question-container">
         <div class="title-container">
-          <h1 id="gameTitle" style="font-size: 20px;">What is WeSpark?</h1>
+          <h1 id="gameTitle">What is WeSpark?</h1>
           <h2 id="gameSubtitle">Please select one option:</h2>
         </div>
         <div class="image-container">
-          <img
-            id="questionImage"
-            src="https://static.wixstatic.com/media/9c422e_cdf4917767c945ba80831a19747d1693~mv2.png"
-            alt="Question image"
-          />
+          <img id="questionImage" src="https://static.wixstatic.com/media/9c422e_cdf4917767c945ba80831a19747d1693~mv2.png" alt="Question image">
         </div>
         <div class="options-container" id="optionsForm">
           <!-- Options will be loaded here dynamically -->
@@ -327,35 +337,28 @@
       </div>
     </div>
   </div>
-  <canvas
-    id="confetti-canvas"
-    style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100vmin; height: 100vmin; pointer-events: none; z-index: 100;"
-  ></canvas>
+  <canvas id="confetti-canvas" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100vmin; height: 100vmin; pointer-events: none; z-index: 100;"></canvas>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
     let questions = [
       {
         questionText: 'What is the capital of France?',
-        questionImage:
-          'https://static.wixstatic.com/media/9c422e_cdf4917767c945ba80831a19747d1693~mv2.png',
+        questionImage: 'https://static.wixstatic.com/media/9c422e_cdf4917767c945ba80831a19747d1693~mv2.png',
         options: [
           {
             text: 'Website Design Agency',
             correct: false,
-            errorMessage:
-              '❌ Some projects require WeSpark to aid in the design of websites, user experience, or sales funnels, but WeSpark is not a website design agency.',
+            errorMessage: '❌ Some projects require WeSpark to aid in the design of websites, user experience, or sales funnels, but WeSpark is not a website design agency.',
           },
           {
             text: 'Innovation Agency',
             correct: true,
-            errorMessage:
-              '✅ WeSpark is an Innovation Agency that helps companies grow through designing new AI-powered Products & Services, running world-class corporate Training, and creating gamified Learning Experiences.',
+            errorMessage: '✅ WeSpark is an Innovation Agency that helps companies grow through designing new AI-powered Products & Services, running world-class corporate Training, and creating gamified Learning Experiences.',
           },
           {
             text: 'Public Relations Agency',
             correct: false,
-            errorMessage:
-              '❌ Some public projects need PR support, and WeSpark has a partner to work on PR topics, but WeSpark is not a PR agency.',
+            errorMessage: '❌ Some public projects need PR support, and WeSpark has a partner to work on PR topics, but WeSpark is not a PR agency.',
           },
         ],
       },
@@ -364,6 +367,7 @@
     let selectedOption = null;
     let confettiInterval;
     let correctAnswersCount = 1;
+
     function updateProgressBar() {
       for (let i = 1; i <= 7; i++) {
         const segment = document.getElementById(`segment${i}`);
@@ -377,6 +381,7 @@
         }
       }
     }
+
     function loadQuestion(index) {
       const question = questions[index];
       const questionContainer = document.getElementById('questionContainer');
@@ -396,9 +401,9 @@
           const button = document.createElement('button');
           button.className = 'option-button';
           button.innerHTML = `
-                        <div class="option-circle"></div>
-                        <span>${option.text}</span>
-                    `;
+            <div class="option-circle"></div>
+            <span>${option.text}</span>
+          `;
           button.onclick = function () {
             selectedOption = option;
             document.querySelectorAll('.option-button').forEach((btn) => btn.classList.remove('selected'));
@@ -413,11 +418,13 @@
         }, 10);
       }
     }
+
     function checkAnswers() {
       const questionContainer = document.getElementById('questionContainer');
       const feedbackElement = document.getElementById('feedback');
       const buttonContainer = document.querySelector('.button-container');
       const submitButton = document.getElementById('submitButton');
+
       if (selectedOption) {
         if (selectedOption.correct) {
           correctAnswersCount++;
@@ -427,51 +434,59 @@
           correctMessage.textContent = 'Correct!';
           feedbackElement.innerHTML = '';
           feedbackElement.appendChild(correctMessage);
+
+          setTimeout(() => {
+            correctMessage.style.display = 'none';
+            const successMessage = document.createElement('div');
+            successMessage.className = 'pill correct-pill success-message';
+            successMessage.textContent = selectedOption.errorMessage;
+            feedbackElement.appendChild(successMessage);
+          }, 500);
+
           startConfetti();
           setTimeout(() => {
-            correctMessage.style.opacity = '0';
-            setTimeout(() => {
-              submitButton.style.display = 'none';
-              const continueButton = document.createElement('button');
-              continueButton.className = 'continue-pill';
-              continueButton.textContent = 'Continue?';
-              continueButton.onclick = function () {
+            submitButton.style.display = 'none';
+            const continueButton = document.createElement('button');
+            continueButton.className = 'continue-pill';
+            continueButton.textContent = 'Continue?';
+            continueButton.onclick = function () {
+              currentQuestionIndex++;
+              if (currentQuestionIndex < questions.length) {
+                loadQuestion(currentQuestionIndex);
+              } else {
+                redirectToWorkPage();
+              }
+            };
+            buttonContainer.appendChild(continueButton);
+            let timeLeft = 10;
+            const timer = setInterval(() => {
+              timeLeft--;
+              continueButton.textContent = `Continue? (${timeLeft}s)`;
+              if (timeLeft <= 0) {
+                clearInterval(timer);
                 currentQuestionIndex++;
                 if (currentQuestionIndex < questions.length) {
                   loadQuestion(currentQuestionIndex);
                 } else {
                   redirectToWorkPage();
                 }
-              };
-              buttonContainer.appendChild(continueButton);
-              let timeLeft = 10;
-              const timer = setInterval(() => {
-                timeLeft--;
-                continueButton.textContent = `Continue? (${timeLeft}s)`;
-                if (timeLeft <= 0) {
-                  clearInterval(timer);
-                  currentQuestionIndex++;
-                  if (currentQuestionIndex < questions.length) {
-                    loadQuestion(currentQuestionIndex);
-                  } else {
-                    redirectToWorkPage();
-                  }
-                }
-              }, 1000);
-            }, 500);
-          }, 2000);
+              }
+            }, 1000);
+          }, 500);
         } else {
           feedbackElement.innerHTML = `
-                        <div class="incorrect-feedback">${selectedOption.errorMessage}</div>
-                    `;
+            <div class="incorrect-feedback">${selectedOption.errorMessage}</div>
+          `;
           const tryAgainButton = document.createElement('button');
           tryAgainButton.className = 'try-again-pill';
           tryAgainButton.textContent = 'Try Again!';
           tryAgainButton.onclick = function () {
             resetSelection();
             buttonContainer.removeChild(tryAgainButton);
+            submitButton.style.display = 'block';
           };
           buttonContainer.appendChild(tryAgainButton);
+          submitButton.style.display = 'none';
           questionContainer.classList.add('incorrect-animation');
           setTimeout(() => {
             questionContainer.classList.remove('incorrect-animation');
@@ -480,16 +495,23 @@
       } else {
         feedbackElement.textContent = 'Please select an option.';
         feedbackElement.className = 'incorrect-feedback';
+        setTimeout(() => {
+          feedbackElement.textContent = '';
+          feedbackElement.className = '';
+        }, 2000); // Desaparece después de 2 segundos
       }
     }
+
     function resetSelection() {
       document.getElementById('feedback').textContent = '';
       document.querySelectorAll('.option-button').forEach((btn) => btn.classList.remove('selected'));
       selectedOption = null;
     }
+
     function redirectToWorkPage() {
       window.location.href = 'https://levi5171.wixstudio.com/my-site-1/blank-1';
     }
+
     function startConfetti() {
       const canvas = document.getElementById('confetti-canvas');
       const myConfetti = confetti.create(canvas, { resize: true, useWorker: true });
@@ -510,6 +532,7 @@
         }
       }, 1000);
     }
+
     document.addEventListener('DOMContentLoaded', function () {
       loadQuestion(currentQuestionIndex);
       updateProgressBar();
