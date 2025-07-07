@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +7,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Multiple Choice Game</title>
   <style>
+    :root {
+      --global_title_color: #FFFFFF;
+      --global_background_color: #e2e2e2;
+      --global_button_text_color: #000000;
+      --global_button_color_main: #FCD307;
+      --global_button_color_secondary: #FFD700;
+      --global_color_frames: #808080;
+      --global_color_soft: #F4A460;
+      --global_color_pass: #1bb40d;
+      --global_color_fail: #ff3030;
+    }
+
     body {
       font-family: 'Helvetica', sans-serif;
       display: flex;
@@ -12,31 +26,31 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      background-color: #E2E2E2;
-      color: #000000;
-      overflow: auto;
+      background-color: var(--global_background_color);
+      color: var(--global_title_color);
+      overflow: hidden;
     }
 
     .game-wrapper {
-      width: 400vmin;
+      width: 100vmin;
       height: 90vmin;
-      max-width: 90vmin;
+      max-width: 900vmin;
       max-height: 90vmin;
     }
 
     .game-container {
-      width: 2000px;
-      height: 90%;
+      width: 100%;
+      height: 100%;
       box-sizing: border-box;
-      background-color: #FFFFFF;
+      background-color: var(--global_title_color);
       padding: 2.5vmin;
       border-radius: 4vmin;
       box-shadow: 0 0 3vmin rgba(0, 0, 0, 0.1);
       text-align: center;
       position: relative;
-      overflow: auto;
       display: flex;
       flex-direction: column;
+      overflow: auto;
     }
 
     .progress-bar {
@@ -52,7 +66,7 @@
 
     .progress-segment {
       flex: 1;
-      background-color: #ddd;
+      background-color: var(--global_color_frames);
       transition: background-color 0.3s ease;
       height: 100%;
     }
@@ -68,7 +82,7 @@
     }
 
     .progress-segment.filled {
-      background: linear-gradient(to right, #FCD307, #FFBC00);
+      background: linear-gradient(to right, var(--global_button_color_main), var(--global_button_color_secondary));
     }
 
     .progress-segment.flashing {
@@ -77,7 +91,7 @@
 
     @keyframes flash {
       0%, 100% {
-        background-color: #ddd;
+        background-color: var(--global_color_frames);
       }
       50% {
         background-color: rgba(252, 211, 7, 0.7);
@@ -91,14 +105,14 @@
     }
 
     .title-container h1 {
-      color: #000000;
+      color: var(--global_button_text_color);
       font-size: 3vmin;
       margin-bottom: 1vmin;
       font-family: 'Helvetica', sans-serif;
     }
 
     .title-container h2 {
-      color: #555555;
+      color: var(--global_color_frames);
       font-size: 2vmin;
       font-family: 'Helvetica', sans-serif;
     }
@@ -130,14 +144,14 @@
     }
 
     .option-button {
-      background-color: #FCD307;
+      background-color: var(--global_button_color_main);
       border: none;
       border-radius: 7vmin;
       padding: 1vmin;
       margin: 0.7vmin 0;
       cursor: pointer;
       transition: background-color 0.3s, transform 0.2s;
-      width: 40%;
+      width: 60%;
       text-align: center;
       display: flex;
       align-items: center;
@@ -146,35 +160,36 @@
       box-sizing: border-box;
       user-select: none;
       font-family: 'Helvetica', sans-serif;
+      color: var(--global_button_text_color);
     }
 
     .option-button:hover {
-      background-color: #FFBC00;
+      background-color: var(--global_button_color_secondary);
       transform: scale(1.02);
     }
 
     .option-button.selected {
-      background-color: #FFBC00;
+      background-color: var(--global_button_color_secondary);
     }
 
     .option-circle {
       width: 1vmin;
       height: 1vmin;
       border-radius: 50%;
-      background-color: #FFFFFF;
-      border: 0.5vmin solid #000000;
+      background-color: var(--global_title_color);
+      border: 0.5vmin solid var(--global_button_text_color);
       margin-right: 1vmin;
       flex-shrink: 0;
     }
 
     .option-button.selected .option-circle {
-      background-color: #3a3a3a;
-      border: 0.5vmin solid #000000;
+      background-color: var(--global_color_frames);
+      border: 0.5vmin solid var(--global_button_text_color);
     }
 
     button {
-      background-color: #FCD307;
-      color: #000000;
+      background-color: var(--global_button_color_main);
+      color: var(--global_button_text_color);
       border: none;
       border-radius: 1.5vmin;
       cursor: pointer;
@@ -188,14 +203,14 @@
     }
 
     button:hover {
-      background-color: #FFBC00;
+      background-color: var(--global_button_color_secondary);
     }
 
     #feedback {
       font-weight: bold;
       margin-top: 3vmin;
-      font-size: 1.5vmin;
-      padding: 0.7vmin;
+      font-size: 2vmin;
+      padding: 2vmin;
       border-radius: 1vmin;
       min-height: 3em;
       box-sizing: border-box;
@@ -203,12 +218,12 @@
     }
 
     .correct-feedback {
-      color: #2E7D32;
+      color: var(--global_color_pass);
       background-color: rgba(46, 125, 50, 0.1);
     }
 
     .incorrect-feedback {
-      color: #C62828;
+      color: var(--global_color_fail);
       background-color: rgba(198, 40, 40, 0.1);
       font-size: 1.6vmin;
       top: 190%;
@@ -230,18 +245,18 @@
 
     .correct-pill {
       background-color: rgba(46, 125, 50, 0.1);
-      color: #2E7D32;
+      color: var(--global_color_pass);
     }
 
     .success-message {
-      font-size: 11px;
+      font-size: 1.5vmin;
       margin-top: -2vmin;
       transform: translateY(-1vmin);
     }
 
     .try-again-pill {
       background-color: #FFCDD2;
-      color: #C62828;
+      color: var(--global_color_fail);
       border: none;
       border-radius: 3vmin;
       cursor: pointer;
@@ -255,12 +270,12 @@
 
     .try-again-pill:hover {
       background-color: #FF1744;
-      color: white;
+      color: var(--global_title_color);
     }
 
     .continue-pill {
-      background-color: #FFD54F;
-      color: #000000;
+      background-color: var(--global_button_color_secondary);
+      color: var(--global_button_text_color);
       border: none;
       border-radius: 3vmin;
       cursor: pointer;
@@ -275,7 +290,7 @@
     #submitButton {
       font-size: 2vmin;
       padding: 1.5vmin 3vmin;
-      width: 24%;
+      width: 30%;
       height: auto;
       border-radius: 3vmin;
       max-width: 250px;
@@ -287,14 +302,6 @@
       gap: 1vmin;
       margin-top: -1.5vmin;
       flex-shrink: 0;
-    }
-
-    @media (min-width: 768px) {
-      .game-container {
-        max-width: 600px;
-        max-height: 600px;
-        padding: 3vmin;
-      }
     }
 
     .options-container::-webkit-scrollbar {
@@ -498,7 +505,7 @@
         setTimeout(() => {
           feedbackElement.textContent = '';
           feedbackElement.className = '';
-        }, 2000); // Desaparece después de 2 segundos
+        }, 2000);
       }
     }
 
